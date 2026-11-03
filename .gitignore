@@ -1,0 +1,87 @@
+# Nothing that belongs to the game or to WiiCompiled ever goes in here.
+
+# discs and dumps
+*.iso
+*.wbfs
+*.rvz
+*.ciso
+*.nkit
+*.wia
+*.dol
+*.gcm
+
+# the game's own files
+*.pac
+*.brres
+*.brstm
+*.brsar
+*.thp
+*.msbin
+*.bin
+DATA/
+Disc/
+
+# build output
+*.exe
+*.dll
+*.lib
+*.obj
+*.o
+*.a
+*.pdb
+*.msix
+*.appx
+*.rsp
+obj/
+obj-deps/
+build/
+contenido/
+port/
+generated/
+
+# signing certificates: yours is yours
+*.pfx
+*.p12
+*.cer
+*.snk
+*.pem
+*.key
+
+# CREDENTIALS. The Device Portal user and password live in
+# %LOCALAPPDATA%\xbox-devportal\credenciales.txt, outside this tree, and must never be
+# committed: a public repository cannot be un-leaked.
+credenciales.txt
+credentials.txt
+.env
+*.env
+secrets.*
+
+# saves, caches and logs
+*.sav
+*.raw
+*.log
+uwp-console.txt
+uwp-sonda.txt
+pipeline_cache.db*
+dawn_cache.db*
+# The shader seed is built from playing YOUR disc: tools/semilla_pipelines.py makes yours.
+initial_pipeline_cache.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# editors and OS
+.vs/
+.vscode/
+.idea/
+*.swp
+*.tmp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# The package tiles are supplied by whoever packages (docs/ASSETS.md).
+package/Assets/*.png

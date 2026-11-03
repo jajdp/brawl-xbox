@@ -1,0 +1,22 @@
+# Normalise to LF in the repository; check out what each tool actually wants.
+* text=auto eol=lf
+
+# Windows scripts: CRLF on checkout. PowerShell and cmd.exe are happier that way, and the .ps1
+# files here are UTF-8 WITH BOM on purpose — without it, PowerShell 5.1 mis-parses the accented
+# characters and reports "Unexpected token" on a line that has nothing to do with the problem.
+*.ps1   text eol=crlf working-tree-encoding=UTF-8
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
+
+# The appx manifest is read by Windows tooling
+*.appxmanifest text eol=crlf
+
+# Keep these as they are
+*.png   binary
+*.db    binary
+*.msix  binary
+
+# Diffs read better with the language known
+*.py    diff=python
+*.md    text
+LICENSE text

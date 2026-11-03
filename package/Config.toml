@@ -1,0 +1,60 @@
+# Super Smash Bros. Brawl (WiiCompiled) — configuración para la Xbox Series X (UWP).
+#
+# Va en LocalState\WiiCompiled\Config.toml del paquete. Las rutas relativas se resuelven
+# respecto a esta carpeta, así que ../GameAssets/DATA = LocalState\GameAssets\DATA.
+#
+# ⚠ Sin este archivo la app arranca, pinta el splash de UWP y se cierra sin escribir ni un
+# registro — el mismo síntoma que tuvo Retro Rewind, y despista mucho.
+
+[paths]
+dvd_root = "../GameAssets/DATA"
+
+[video]
+# 480 x resolution_multiplier: 2.25 = 1080p, 3 = 1440p, 4.5 = 4K, 0 = resolución de pantalla.
+# Se empieza por 1080p a propósito: Brawl mueve más que Mario Kart Wii y la primera prueba en la
+# consola interesa que vaya sobrada. Si va holgado, subir a 3 o a 0.
+resolution_multiplier = 2.25
+widescreen = true
+aspect_mode = 1
+vsync = true
+display_mode = "borderless"
+graphics_api = "auto"
+show_fps = true
+# Interpolación apagada: en el PC es la que provoca el parpadeo de la cinemática de Lakitu
+# (issue abierto en el repo del juego), y en consola no hace falta.
+frame_interpolation_fps = 0
+
+[audio]
+volume = 1.0
+
+[network]
+# El SSL del juego queda desactivado en UWP (ni Schannel ni mbed TLS en la familia APP) y el
+# AppContainer no lanza procesos hijos, así que no hay Tailscale. Nintendo WFC cerró en 2014.
+enabled = false
+
+[discord]
+enabled = false
+
+# Mando de GameCube emulado con el mando de Xbox. Los nombres son los genéricos de SDL
+# (south = A, east = B, west = X, north = Y), que es lo que usó el port de Mario Kart Wii con
+# este mismo runtime.
+#
+# ⚠ Pendiente de probar con el mando en la consola: este mapeo es el de partida, no el validado.
+# Se ajusta desde la barra de ajustes del propio juego (F10 en PC; en consola, el menú del
+# runtime) o editando este archivo.
+[controller]
+a = "south"
+b = "east"
+x = "west"
+y = "north"
+start = "start"
+z = "right_shoulder"
+l = "left_shoulder"
+r = "unmapped"
+up = "dpad_up"
+down = "dpad_down"
+left = "dpad_left"
+right = "dpad_right"
+# Escudo y esquivas: los gatillos analógicos del mando de Xbox.
+expr_1_triggers_l = "`Trigger L` > 0.2"
+expr_1_triggers_r = "`Trigger R` > 0.2"
