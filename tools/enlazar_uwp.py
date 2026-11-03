@@ -1,22 +1,17 @@
 """Fase 1: enlaza los objetos compilados por compile_check.py (modo --overlay) en un
 SuperSmashBrosBrawl.exe para UWP/Xbox (AppContainer) con el lld de llvm-mingw en modo link.
-Brawl trae un solo producto, asi que --excluir= no hace falta (lo necesitaba Mario Kart Wii,
-que compila el juego base y Retro Rewind en la misma carpeta de objetos).
+Brawl trae un solo producto, asi que --excluir= no hace falta aqui.
 
 Uso:  python enlazar_uwp.py <obj_runtime> <obj_deps> <salida.exe> [--excluir=a,b,c]
 Hay que lanzarlo con el entorno «store» de Visual Studio (LIB apuntando a las bibliotecas
 de la tienda): ver lanzar.cmd / enlazar.cmd.
 
-`--excluir=` aparta los objetos cuyo nombre contenga alguno de esos textos. Hace falta
-desde el 2026-09-20, cuando la compilacion pasó a traer DOS productos a la vez (el juego
-base y Retro Rewind) en la misma carpeta de objetos: comparten runtime, aurora y los
-shards `base_common`, y solo se diferencian en tres grupos. Enlazarlos todos juntos
-duplica simbolos, asi que cada ejecutable aparta los del otro:
-
-    Retro Rewind  --excluir=shards_base_portable_sensitive_,shards_base_registration_
-    juego base    --excluir=shards_retro_mod_,shards_retro_portable_sensitive_,shards_retro_rewind_registration_
-
-(Los grupos salen de la orden de enlazado real del build de PC, en `build.ninja`.)
+`--excluir=` aparta los objetos cuyo nombre contenga alguno de esos textos. Esta para el
+caso de un arbol que compile DOS productos a la vez en la misma carpeta de objetos —un
+juego y un mod suyo, por ejemplo, que es algo que este runtime permite—: comparten runtime,
+aurora y los shards comunes, y solo se diferencian en unos pocos grupos. Enlazarlos todos
+juntos duplica simbolos, asi que cada ejecutable tiene que apartar los grupos del otro. Los
+nombres de esos grupos salen de la orden de enlazado real del build de PC, en `build.ninja`.
 """
 import os
 import subprocess
@@ -50,7 +45,7 @@ UWP_DEP = _ruta("BRAWL_UWP_DEP", "worleydl/uwp-dep, rama dawn-dev") / "x64"
 EXCLUIR = ("runtime_tests_", "aurora-main_lib_main.cpp", "aurora-main_examples_",
            "product_engine_loader.cpp")
 
-# La rama dawn-dev del depot no trae libpng16.lib ni z.lib (la que uso Mario Kart Wii si):
+# La rama dawn-dev del depot no trae libpng16.lib ni z.lib, aunque otras ramas si las traen:
 # en Brawl zlib y libpng salen de los objetos del propio arbol, con el grupo deps.
 LIBS_UWP_DEP = ["SDL3.lib", "webgpu_dawn.lib", "nod.lib", "libuwp.lib", "dxcompiler.lib"]
 LIBS_SISTEMA = ["WindowsApp.lib", "OneCore.lib", "ntdll.lib", "dxgi.lib", "ws2_32.lib", "msvcrt.lib", "msvcprt.lib", "vcruntime.lib", "ucrt.lib"]
@@ -81,7 +76,7 @@ def main() -> int:
             # consola. zlib y libpng NO vienen en la rama dawn-dev, asi que aqui SI entran.
             # Con «in» y no «startswith»: en Brawl el nombre del objeto lleva la ruta entera
             # (F__brawl_wiicompiled_Dependencies_...), porque compile_check.py corta por
-            # «/BuildWorkspace/» y ese tramo solo existe en el arbol de Mario Kart Wii.
+            # «/BuildWorkspace/», y ese tramo no existe en este arbol.
             if any(x in o.name for x in ("_Dependencies_SDL_", "_Dependencies_libusb",
                                          "Dependencies_SDL_", "Dependencies_libusb")):
                 continue
@@ -121,8 +116,8 @@ def main() -> int:
     lineas = [f'"{o}"' for o in objetos] + [f'"{l}"' for l in libs_propias]
     # El SDL3 de la rama dawn-dev SI vale para AppContainer: importa MSVCP140_APP,
     # VCRUNTIME140_APP, vccorlib140_app y api-ms-win-core-winrt (comprobado el 2026-11-02 con
-    # llvm-objdump -p, y sale identico al del uwp-dep-sdl que necesito Mario Kart Wii con la
-    # rama dawnlight). Asi que no hace falta un depot de SDL aparte.
+    # llvm-objdump -p, y sale identico al del uwp-dep-sdl que hace falta con la rama
+    # dawnlight). Asi que no hace falta un depot de SDL aparte.
     lineas += [f'"{UWP_DEP / "lib" / l}"' for l in LIBS_UWP_DEP]
     lineas += LIBS_SISTEMA
     rsp.write_text("\n".join(lineas), encoding="utf-8")

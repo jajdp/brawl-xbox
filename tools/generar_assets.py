@@ -9,7 +9,7 @@ El arte vive en `dependencias-usuario\\Display Images\\` y ya viene en las medid
 
 Ni un pixel del juego ni de su decompilacion: es la regla de la casa, y el arte es del usuario.
 
-⚠ Dos cosas aprendidas en el port de Mario Kart Wii:
+⚠ Dos cosas que cuestan un empaquetado fallido cada una:
   - Sin `resources.pri`, makeappx exige **tambien** el nombre sin calificador de escala, y ese
     archivo lleva el tamano de `scale-200` (`Square150x150Logo.png` mide 300x300).
   - Los PNG se guardan con `optimize=True`: por encima de 204.800 B, MSBuild corta el empaquetado

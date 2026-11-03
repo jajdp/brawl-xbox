@@ -361,7 +361,7 @@ r'''#if defined(AURORA_WINDOWS_STORE)
 #endif''', 1))
 
 
-# ---------------- Brawl: lo que la receta de Mario Kart Wii no cubria ----------------
+# ---------------- Brawl: primera tanda ----------------
 
 # vi.cpp: DWM_TIMING_INFO vive tras WINAPI_PARTITION_DESKTOP, asi que en la familia APP no existe.
 # Hay un #else que deja d.valid en false: el juego se queda con su propio reloj, como en Linux.
@@ -473,9 +473,9 @@ using ssize_t = std::ptrdiff_t;
 
 # ---------------- Brawl: segunda tanda, lo que destapo el compile-check ----------------
 
-# main.cpp y host_cpu_baseline.cpp: nada que hacer aqui. La receta de Mario Kart Wii ya mueve la
-# declaracion de MkwUwpTrace a ambito de archivo y deja la llamada limpia; sale bien siempre que se
-# aplique de UNA pasada sobre un arbol limpio. Aplicarla sobre un arbol ya parcheado duplica el
+# main.cpp y host_cpu_baseline.cpp: nada que hacer aqui. Los parches del bloque «runtime» de mas
+# arriba ya mueven la declaracion de MkwUwpTrace a ambito de archivo y dejan la llamada limpia;
+# sale bien siempre que se apliquen de UNA pasada sobre un arbol limpio. Aplicarla sobre un arbol ya parcheado duplica el
 # bloque y rompe la sintaxis (extern "C" no cabe dentro de una funcion).
 
 # game_folder.cpp: el segundo MessageBoxW, el del bucle que pide la carpeta. El bloque ya tiene
@@ -531,7 +531,7 @@ r"""#elif defined(MKW_UWP)
     mbedtls_net_context netContext{};
 #endif""", 1))
 
-# Las implementaciones: los mismos stubs que llevaba la receta de Mario Kart Wii.
+# Las implementaciones: los stubs que dejan el SSL apagado sin tocar a quien lo llama.
 P.append(("runtime/src/hle/net/network_ssl.cpp",
 r"""    return copied == 0 ? SSL_ERR_ZERO : static_cast<int32_t>(copied);
 }
@@ -575,7 +575,6 @@ r"""#if defined(_WIN32)  /* el timeout es de Winsock y no de Schannel: vale igua
 # fs::relative() canonicaliza contra el disco (GetFinalPathNameByHandle) y el AppContainer de la
 # consola lo rechaza: da error para CADA archivo, el indice del DVD queda en 0 y el juego muere
 # con PPCHalt al pedir el primero. lexically_relative es puramente lexico y no toca el disco.
-# Mismo arreglo que necesito el port de Mario Kart Wii (commit 37cf8b2 de su lane Xbox).
 P.append(("runtime/src/hle/storage/dvd.cpp",
 r"""        const fs::path relative = fs::relative(entry.path(), root, entryEc);
         if (entryEc) {

@@ -1,4 +1,5 @@
-// Punto de entrada del port UWP (Xbox Series X, Dev Mode) de Mario Kart Wii / Wiicompiled.
+// Punto de entrada del port UWP (Xbox Series X, Dev Mode) de Super Smash Bros. Brawl,
+// sobre el runtime de WiiCompiled.
 //
 // En UWP el proceso arranca por CoreApplication, no por main(): SDL3-uwp (SternXD) trae ese
 // cascarón dentro de SDL_RunApp, que crea la CoreWindow y llama a la función de la app en su

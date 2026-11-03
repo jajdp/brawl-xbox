@@ -8,8 +8,6 @@
 // Asi que primero se instala esta semilla —la misma identidad, version 0.1.0.0, el manifiesto y
 // los mosaicos de verdad y este exe de unos pocos KB— y despues el paquete completo como
 // actualizacion (0.1.0.1). La semilla no tiene que funcionar: solo registrar la familia.
-//
-// Mismo truco que uso Monster Hunter Portable 3rd (ES) el 2026-09-29.
 
 #include <windows.h>
 

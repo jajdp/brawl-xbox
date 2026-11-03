@@ -4,15 +4,15 @@
 # respecto a esta carpeta, así que ../GameAssets/DATA = LocalState\GameAssets\DATA.
 #
 # ⚠ Sin este archivo la app arranca, pinta el splash de UWP y se cierra sin escribir ni un
-# registro — el mismo síntoma que tuvo Retro Rewind, y despista mucho.
+# registro. Despista mucho, porque parece un fallo del paquete y es un archivo que falta.
 
 [paths]
 dvd_root = "../GameAssets/DATA"
 
 [video]
 # 480 x resolution_multiplier: 2.25 = 1080p, 3 = 1440p, 4.5 = 4K, 0 = resolución de pantalla.
-# Se empieza por 1080p a propósito: Brawl mueve más que Mario Kart Wii y la primera prueba en la
-# consola interesa que vaya sobrada. Si va holgado, subir a 3 o a 0.
+# Se empieza por 1080p a propósito: Brawl mueve bastante y la primera prueba en la consola
+# interesa que vaya sobrada. Si va holgado, subir a 3 o a 0.
 resolution_multiplier = 2.25
 widescreen = true
 aspect_mode = 1
@@ -36,8 +36,7 @@ enabled = false
 enabled = false
 
 # Mando de GameCube emulado con el mando de Xbox. Los nombres son los genéricos de SDL
-# (south = A, east = B, west = X, north = Y), que es lo que usó el port de Mario Kart Wii con
-# este mismo runtime.
+# (south = A, east = B, west = X, north = Y), que es lo que espera este runtime.
 #
 # ⚠ Pendiente de probar con el mando en la consola: este mapeo es el de partida, no el validado.
 # Se ajusta desde la barra de ajustes del propio juego (F10 en PC; en consola, el menú del
