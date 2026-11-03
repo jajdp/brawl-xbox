@@ -151,7 +151,7 @@ if (-not $SinVerificar) {
         if ($LASTEXITCODE -ne 0) {
             Write-Warning ("El disco NO quedo completo. Si fue por espacio, libera sitio y repite " +
                            "con -Lista sobre el informe de arriba. Para hacer hueco sin perder " +
-                           "partidas: herramientas\xbox-vaciar-carpeta.ps1 (la carpeta Logs del " +
+                           "partidas: tools\xbox-vaciar-carpeta.ps1 (la carpeta Logs del " +
                            "propio port suele tener cientos de MB de volcados).")
             exit 1
         }

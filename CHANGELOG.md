@@ -2,6 +2,23 @@
 
 All notable changes to this recipe. Dates are `YYYY-MM-DD`.
 
+## [1.0.2] — 2026-11-03
+
+### Fixed
+
+- **Two paths pointed at a folder that does not exist for anyone who downloads this.** The
+  disk-space note in `tools/desplegar.ps1` and a message in `tools/subir_disco.ps1` cited
+  `herramientas\xbox-vaciar-carpeta.ps1` — the working-tree folder this recipe was written in. The
+  script itself does ship here, as `tools/xbox-vaciar-carpeta.ps1`, which is how `docs/INSTALL.md`
+  has always cited it. Both now say `tools\`.
+
+- **1.0.1 removed that mention instead of fixing it.** Checking whether the published zip still
+  held the old wording showed the script present in `tools/`: the previous release had taken
+  "a script that is not in this repository" at face value and replaced the line with a by-hand
+  Device Portal procedure, dropping a tool the reader already has. The line is back, with the right
+  path, and without the part that was genuinely unhelpful — it used to say "another port's
+  GameAssets", naming no port.
+
 ## [1.0.1] — 2026-11-03
 
 ### Changed

@@ -20,8 +20,8 @@
   2. **El espacio de desarrollo son 30 GB FIJOS** para todos los ports juntos (medido desde
      dentro: «libre 0 MiB de 30719 MiB»), y no tiene nada que ver con los 802 GB del
      almacenamiento de juegos. El disco de Brawl son 6,7 GB: hay que tener sitio ANTES.
-     Para hacerlo: desde el explorador de archivos del Device Portal, vaciar la carpeta de
-     datos (LocalState) de alguna app de desarrollo que no se este usando.
+     Para hacerlo: `tools\xbox-vaciar-carpeta.ps1` sobre el GameAssets de una app de
+     desarrollo que no se este usando.
 
   3. **Lanzar por el portal falla a veces** con -2147023880 y al segundo intento va. Se reintenta.
 
