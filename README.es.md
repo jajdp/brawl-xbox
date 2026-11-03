@@ -90,18 +90,40 @@ El detalle está en **[`docs/HOW-IT-WORKS.es.md`](docs/HOW-IT-WORKS.es.md)**.
 | 7 | El juego se juega, pero **sin música de fondo** | La subida del disco se había cortado por tener llena la partición de desarrollo y nadie se enteró. Ahora la subida **se verifica contra el origen** |
 | 8 | Los shaders compilan en plena pelea y bajan los FPS | Es normal y se cura solo, pero una **semilla propia** deja limpia la primera partida. ⚠ La que trae WiiCompiled es de NSMBW: comparte **1 pipeline de 393** con Brawl |
 
-## Créditos y licencia
+## Créditos
 
-Las herramientas y la receta son de **Recompilaciones**, bajo **[GPL-3.0](LICENSE)**, la misma
-licencia que WiiCompiled, que es el código que modifican los 46 parches del runtime. Los otros 7
-parchean [Aurora](https://github.com/encounter/aurora), que es MIT, © 2022 Luke Street, y MIT es
-compatible con esta.
+**Casi nada de lo que hace que esto funcione es nuestro.** Este repositorio es una receta que une
+el trabajo de otros; sin cualquiera de estas piezas no habría port.
 
-*Super Smash Bros. Brawl* es © Nintendo. WiiCompiled es de su autor, y
-[BrawlRecompiled](https://github.com/josiahg2502-glitch/BrawlRecompiled) de JosiahG — **no se
-reproduce ni una línea del proyecto contenedor**, solo de los árboles GPL-3.0 y MIT que lleva
-dentro.
+| Qué hace | Quién lo hizo | Licencia |
+|---|---|---|
+| **[BrawlRecompiled](https://github.com/josiahg2502-glitch/BrawlRecompiled)** — recompila *Brawl*; el proyecto del que este port es un port | **JosiahG** ([josiahg2502-glitch](https://github.com/josiahg2502-glitch)) | sin licencia declarada |
+| **[WiiCompiled](https://github.com/patchzyy/Wiicompiled)** — el motor que convierte el PowerPC del disco en C++ nativo, y el runtime que lo rodea | **patchzyy** | GPL-3.0 |
+| **[Aurora](https://github.com/encounter/aurora)** — hace de GX de la Wii, de ventana y de entrada | **Luke Street** ([encounter](https://github.com/encounter)) | MIT, © 2022 |
+| **[nod](https://github.com/encounter/nod)** — lee la imagen del disco | **Luke Street** | MIT, © 2021 |
+| **[uwp-dep](https://github.com/worleydl/uwp-dep)** y **libuwp** — Dawn, SDL3, nod y dxcompiler **compilados para UWP**, que es la única razón por la que esto corre en una Xbox | **Daniel Worley** ([worleydl](https://github.com/worleydl)) | libuwp: zlib, © 2025 |
+| **[Dawn](https://dawn.googlesource.com/dawn)** — la implementación de WebGPU por la que dibuja Aurora | **The Dawn & Tint Authors** (Google) | BSD-3-Clause |
+| **[SDL](https://github.com/libsdl-org/SDL)** — ventana, mando y audio | **Sam Lantinga** y quienes contribuyen a SDL | zlib |
+| **[Dear ImGui](https://github.com/ocornut/imgui)** — el menú de opciones dentro del juego | **Omar Cornut** | MIT |
+| **[Crypto++](https://github.com/weidai11/cryptopp)**, **[pugixml](https://github.com/zeux/pugixml)**, **[toml11](https://github.com/ToruNiina/toml11)**, **[fmt](https://github.com/fmtlib/fmt)** | **Wei Dai**; **Arseny Kapoulkine**; **Toru Niina**; **Victor Zverovich** | MIT |
+| **DirectX Shader Compiler** (`dxcompiler`, `dxil`) | **Microsoft** | sus propios términos |
+| **Los parches, las herramientas y esta documentación** | **Recompilaciones** | GPL-3.0 |
 
-Este proyecto no está afiliado a ninguno de ellos, ni a Microsoft, y no distribuye nada que les
-pertenezca: el detalle está en [`NOTICE.es.md`](NOTICE.es.md). Los titulares de derechos pueden
-escribir a **jajdpmail@gmail.com**.
+Mención especial a **Daniel Worley**: las compilaciones UWP de Dawn y SDL3 que hay en `uwp-dep`
+son lo que hace posible portar a Xbox cualquier cosa construida sobre Aurora. No las hicimos
+nosotros, las usamos.
+
+*Super Smash Bros. Brawl* es © Nintendo.
+
+## Licencia
+
+**[GPL-3.0](LICENSE)**, la misma licencia que WiiCompiled, que es lo que modifican los 46 parches
+del runtime. Los otros 7 parchean Aurora (MIT), que es compatible con ella.
+
+**No se reproduce ni una línea de BrawlRecompiled**: el proyecto contenedor no declara licencia,
+así que solo se tocan los árboles GPL-3.0 y MIT que lleva dentro. La cuenta está en
+[`NOTICE.es.md`](NOTICE.es.md).
+
+Este proyecto no está afiliado a ninguna de las personas o empresas de arriba, ni a Microsoft, y
+no distribuye nada que les pertenezca. Los titulares de derechos pueden escribir a
+**jajdpmail@gmail.com**.

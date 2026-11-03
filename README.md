@@ -90,17 +90,38 @@ The detail is in **[`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md)**.
 | 7 | The game plays, but **with no background music** | The disc upload had been cut short by a full dev partition and nobody noticed. Uploading now **verifies against the source** |
 | 8 | Shaders compile mid-match and the frame rate dips | Normal, and it cures itself — but a **seed** of your own makes the first match clean. ⚠ The one WiiCompiled ships is NSMBW's: it shares **1 pipeline out of 393** with Brawl |
 
-## Credits and license
+## Credits
 
-The tools and the recipe are **Recompilaciones**', under the **[GPL-3.0](LICENSE)** — the same
-license as WiiCompiled, which is the code the 46 runtime patches modify. The other 7 patch
-[Aurora](https://github.com/encounter/aurora), which is MIT, © 2022 Luke Street, and MIT is
-compatible with this.
+**Almost none of what makes this work is ours.** This repository is a recipe that glues together
+other people's work; without any one of these pieces there would be no port at all.
 
-*Super Smash Bros. Brawl* is © Nintendo. WiiCompiled belongs to its author, and
-[BrawlRecompiled](https://github.com/josiahg2502-glitch/BrawlRecompiled) to JosiahG — **no line
-of the outer project is reproduced here**, only of the GPL-3.0 and MIT trees it carries.
+| What it does | Who made it | License |
+|---|---|---|
+| **[BrawlRecompiled](https://github.com/josiahg2502-glitch/BrawlRecompiled)** — recompiles *Brawl* itself; the project this port is of | **JosiahG** ([josiahg2502-glitch](https://github.com/josiahg2502-glitch)) | none declared |
+| **[WiiCompiled](https://github.com/patchzyy/Wiicompiled)** — the engine that turns the disc's PowerPC into native C++, and the runtime around it | **patchzyy** | GPL-3.0 |
+| **[Aurora](https://github.com/encounter/aurora)** — stands in for the Wii's GX, the window and input | **Luke Street** ([encounter](https://github.com/encounter)) | MIT, © 2022 |
+| **[nod](https://github.com/encounter/nod)** — reads the disc image | **Luke Street** | MIT, © 2021 |
+| **[uwp-dep](https://github.com/worleydl/uwp-dep)** and **libuwp** — Dawn, SDL3, nod and dxcompiler **built for UWP**, which is the single reason this runs on an Xbox at all | **Daniel Worley** ([worleydl](https://github.com/worleydl)) | libuwp: zlib, © 2025 |
+| **[Dawn](https://dawn.googlesource.com/dawn)** — the WebGPU implementation Aurora draws through | **The Dawn & Tint Authors** (Google) | BSD-3-Clause |
+| **[SDL](https://github.com/libsdl-org/SDL)** — window, input and audio | **Sam Lantinga** and the SDL contributors | zlib |
+| **[Dear ImGui](https://github.com/ocornut/imgui)** — the in-game options overlay | **Omar Cornut** | MIT |
+| **[Crypto++](https://github.com/weidai11/cryptopp)**, **[pugixml](https://github.com/zeux/pugixml)**, **[toml11](https://github.com/ToruNiina/toml11)**, **[fmt](https://github.com/fmtlib/fmt)** | **Wei Dai**; **Arseny Kapoulkine**; **Toru Niina**; **Victor Zverovich** | MIT |
+| **DirectX Shader Compiler** (`dxcompiler`, `dxil`) | **Microsoft** | its own terms |
+| **The patches, the tooling and this documentation** | **Recompilaciones** | GPL-3.0 |
 
-This project is not affiliated with any of them, nor with Microsoft, and distributes nothing that
-belongs to them: the detail is in [`NOTICE.md`](NOTICE.md). Rights holders can write to
-**jajdpmail@gmail.com**.
+Special mention to **Daniel Worley**: the UWP builds of Dawn and SDL3 in `uwp-dep` are what make
+an Xbox port of anything built on Aurora possible. We did not build them, we used them.
+
+*Super Smash Bros. Brawl* is © Nintendo.
+
+## License
+
+**[GPL-3.0](LICENSE)** — the same license as WiiCompiled, which is what the 46 runtime patches
+modify. The other 7 patch Aurora (MIT), which is compatible with it.
+
+**Not one line of BrawlRecompiled itself is reproduced here**: the outer project declares no
+license, so only the GPL-3.0 and MIT trees it carries are touched. The count is in
+[`NOTICE.md`](NOTICE.md).
+
+This project is not affiliated with any of the people or companies above, nor with Microsoft, and
+distributes nothing that belongs to them. Rights holders can write to **jajdpmail@gmail.com**.
